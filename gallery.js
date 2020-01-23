@@ -1,11 +1,10 @@
 // parse slide data (url, title, size ...) from DOM elements 
 // (children of gallerySelector)
-function parseThumbnailElements(el) {
-    let thumbElements = el.childNodes,
+function parseThumbnailElements(el, selector) {
+    let thumbElements = selector ? el.querySelectorAll(selector) : el.childNodes,
         numNodes = thumbElements.length,
         items = [],
         figureEl,
-        linkEl,
         size,
         item;
 
@@ -18,13 +17,22 @@ function parseThumbnailElements(el) {
             continue;
         }
 
-        linkEl = figureEl.children[0]; // <a> element
-
-        size = linkEl.dataset.size.split('x');
+        switch (figureEl.children[0].tagName.toUpperCase()) {
+            case 'A':
+                size = figureEl.querySelector('a').dataset.size.split('x');
+                targetSrc = figureEl.querySelector('a').href; // <a> element
+                originalSrc = figureEl.querySelector('img').src;
+                break;
+            case 'IMG':
+                size = figureEl.dataset.size.split('x');
+                targetSrc = figureEl.querySelector('img').src;
+                originalSrc = targetSrc;
+                break;
+        }
 
         // create slide object
         item = {
-            src: linkEl.href,
+            src: targetSrc,
             w: parseInt(size[0], 10),
             h: parseInt(size[1], 10)
         };
@@ -36,11 +44,7 @@ function parseThumbnailElements(el) {
             item.title = figureEl.children[1].innerHTML;
         }
 
-        if (linkEl.children.length > 0) {
-            // <img> thumbnail element, retrieving thumbnail url
-            item.msrc = linkEl.children[0].src;
-        }
-
+        item.msrc = originalSrc;
         item.el = figureEl; // save link to element for getThumbBoundsFn
         items.push(item);
     }
@@ -52,11 +56,41 @@ function parseThumbnailElements(el) {
 function onThumbnailsClick(e) {
     e.preventDefault();
 
+    
     // find root element of slide
     const clickedListItem = e.target.closest('FIGURE');
-
+    
     if (!clickedListItem) {
         return;
+    }
+    
+    // ver se este elemento figure passa no seletor da galeria (se houver)
+    // se não passar, sai da função
+    const galleryEl = clickedListItem.closest('[data-pswp-uid]');
+    const gallerySelector = galleryEl.dataset.selector;
+    if (gallerySelector) {
+        const allSlides = galleryEl.querySelectorAll(gallerySelector);
+        if (!Array.from(allSlides).includes(clickedListItem)) {
+            return;
+        }
+    }
+    
+    // verifica se há um mouse. se não houver,
+    // abre a galeria apenas se a foto estiver '.selecionada'
+    if (clickedListItem.closest('.gallery') && !window.matchMedia("(hover: hover)").matches) {
+        // não há mouse...
+        const selectedElements = clickedListItem.closest('.gallery').querySelectorAll('figure.selected');
+        for (let el of selectedElements) {
+            if (el !== clickedListItem) {
+                el.classList.remove('selected');
+            }
+        }
+
+        if (!clickedListItem.classList.contains('selected')) {
+            clickedListItem.classList.add('selected');
+            e.stopImmediatePropagation();
+            return;
+        }
     }
 
     // find index of clicked item by looping through all child nodes
@@ -65,18 +99,22 @@ function onThumbnailsClick(e) {
         childNodes = clickedListItem.parentNode.childNodes,
         numChildNodes = childNodes.length,
         nodeIndex = 0,
-        index;
+        index = -1;
 
-    for (let i = 0; i < numChildNodes; i++) {
-        if (childNodes[i].nodeType !== 1) {
-            continue;
+    if (clickedListItem.dataset.order) {
+        index = +clickedListItem.dataset.order;
+    } else {
+        for (let i = 0; i < numChildNodes; i++) {
+            if (childNodes[i].nodeType !== 1) {
+                continue;
+            }
+    
+            if (childNodes[i] === clickedListItem) {
+                index = nodeIndex;
+                break;
+            }
+            nodeIndex++;
         }
-
-        if (childNodes[i] === clickedListItem) {
-            index = nodeIndex;
-            break;
-        }
-        nodeIndex++;
     }
 
 
@@ -85,16 +123,18 @@ function onThumbnailsClick(e) {
         openPhotoSwipe(index, clickedGallery);
     }
 
+    e.stopImmediatePropagation();
     return false;
 };
 
 function openPhotoSwipe(index, galleryElement) {
+    console.log(galleryElement)
     const pswpElement = document.querySelector('.pswp');
     let gallery,
         options,
         items;
 
-    items = parseThumbnailElements(galleryElement);
+    items = parseThumbnailElements(galleryElement, galleryElement.dataset.selector);
 
     // define options (if needed)
     options = {
@@ -132,7 +172,7 @@ function openPhotoSwipe(index, galleryElement) {
 // initing:
 
 // loop through all gallery elements and bind events
-const galleryElements = document.querySelectorAll('.gallery');
+const galleryElements = document.querySelectorAll('.gallery, .top-gallery, .single-gallery');
 
 for (let i = 0, l = galleryElements.length; i < l; i++) {
     galleryElements[i].setAttribute('data-pswp-uid', i + 1);

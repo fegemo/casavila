@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="default-skin/default-skin.css">
 </head>
 <body>
-    <main>
+    <main class="top-gallery" data-selector=".card-img, .small-pic[data-size], .blueprint > figure">
         <div class="card-text">
             <h1 class="glitch">
                 <div class="floating delay-0">Casa à venda</div>
@@ -29,16 +29,26 @@
                 <div class="price-value">R$ 310.000,00</div>
             </div>
         </div>
-        <figure class="card-img">
+        <figure class="card-img" data-size="4632x3474" data-order="0">
             <img src="imgs/fachada.jpg" alt="">
             <figcaption class="phone">
                 <div>Tratar com Flávio</div>
                 <i class="material-icons">phone</i><a href="tel:+5531998745602">31 998-745-602</a>
             </figcaption>
         </figure>
-        <div class="small-pic small-pic-1"><img src="imgs/cozinha.jpg" alt=""></div>
-        <div class="small-pic small-pic-2"><img src="imgs/cozinha-e-sala.jpg" alt=""></div>
-        <div class="small-pic small-pic-3"><img src="imgs/muro.jpg" alt=""></div>
+        <h2 class="callout-1">Alto padrão e conforto em 2 quartos</h2>
+        <figure class="small-pic small-pic-1" data-size="4632x3474" data-order="1">
+            <img src="imgs/cozinha.jpg" alt="">
+            <figcaption>Cozinha</figcaption>
+        </figure>
+        <figure class="small-pic small-pic-2" data-size="4632x3474" data-order="2">
+            <img src="imgs/cozinha-e-sala.jpg" alt="">
+            <figcaption>Cozinha e sala</figcaption>
+        </figure>
+        <figure class="small-pic small-pic-3" data-size="4632x3474" data-order="3">
+            <img src="imgs/muro.jpg" alt="">
+            <figcaption>Muro</figcaption>
+        </figure>
         <div class="small-pic small-pic-4">
             <div>
                 <i class="material-icons">square_foot</i>
@@ -58,25 +68,25 @@
             </div>
         </div>
         <div class="text-content">
-            <h2>Alto padrão e conforto em 2 quartos</h2>
+            <h2 class="callout-2">Alto padrão e conforto em 2 quartos</h2 class="callout">
             <h3>Sobre a casa</h3>
             <div class="description-and-images">
                 <div class="text-description">
                     <p>
-                        Casa construída em 2012, de 91m² com acabamento de alto padrão com 2 quartos, cozinha e sala no estilo americano, área de serviço coberta,
-                        banheiro com box em vidro. Garagem coberta para um carro e vagas descobertas para 4 carros. Possui um
+                        Casa construída em 2012, de <strong>91m²</strong> com acabamento de alto padrão com <strong>2 quartos, cozinha e sala</strong> no estilo americano, <strong>área de serviço coberta</strong>,
+                        <strong>banheiro com box</strong> em vidro. <strong>Garagem coberta</strong> para um carro e vagas descobertas para 4 carros. Possui um
                         gatil/canil/viveiro bem espaçoso (~15m²) para animais.
                     </p>
                     <p>
-                        O lote possui 456m², com 12,5m de frente e 36,5m de fundo e está
-                        parcialmente gramado. Há várias plantas frutíferas, como amora, limão, pitanga e acerola. A casa tem uma vista para mata
-                        definitiva (de proteção) e fica em uma rua tranquila. As janelas da casa possuem telas mosquiteiras e rede de proteção
-                        externa e o portão para carros é eletrônico e para pessoas possui interfone. Os móveis da casa podem ser vendidos junto
+                        O <strong>lote possui 456m²</strong>, com 12,5m de frente e 36,5m de fundo e está
+                        parcialmente gramado. Há várias <strong>plantas frutíferas</strong>, como amora, limão, pitanga e acerola. A casa tem uma <strong>vista para mata
+                        definitiva</strong> (de proteção) e fica em uma rua tranquila. As janelas da casa possuem <strong>telas mosquiteiras</strong> e rede de proteção
+                        externa e o <strong>portão para carros é eletrônico e para pessoas possui interfone</strong>. Os móveis da casa podem ser vendidos junto
                         com ela por um bom preço, a negociar.
                     </p>
                 </div>
                 <div class="blueprint">
-                    <figure>
+                    <figure data-size="1156x867" data-order="5">
                         <img src="imgs/planta.png" alt="">
                         <figcaption>Planta da casa</figcaption>
                         <div class="camera"></div>
@@ -211,8 +221,8 @@
                     Rua Gentil Ferreira Pinto, 112<br>Vila Cristina, Betim/MG
                 </address>
                 <p>
-                    A casa está situada a menos de 1 minuto de carro da Via Expressa e a 2 minutos
-                    (600m) do hospital Mater Dei de Betim. Também fica próxima à empresa Transpes. Há várias padarias e mercearias no
+                    A casa está situada a menos de <strong>1 minuto de carro da Via Expressa</strong> e a <strong>2 minutos
+                    (600m) do hospital Mater Dei</strong> de Betim. Também fica próxima à empresa Transpes. Há várias padarias e mercearias no
                     bairro, a 3 minutos a pé.
                 </p>
                 <iframe class="map"
@@ -221,9 +231,14 @@
             </section>
             <section class="action">
                 <h2>Estou interessado</h2>
-                <div>
-                    Converse com o Flávio (<i class="material-icons">phone</i> <a href="tel:+5531998745602">31 998-745-602</a>, <i class="material-icons">email</i> <a href="mailto:fegemo@gmail.com">fegemo@gmail.com</a> ) para agendar uma visita ou para ter mais informações. Caso queira fechar negócio, você pode tratar diretamente com o proprietário
-                    ou então com a <i class="material-icons">language</i> <a href="http://frankguimaraes.dominio-de-exemplo.com.br/imoveis/detalhes/imovel_id/838853/casa-padrao-para-venda-em-vila-cristina-betim-mg#bg-detalhes">Frank Guimarães imobiliária</a>. Lá, inclusive, você consegue simular e realizar financiamento para a compra.
+                <p>
+                    Converse com o Flávio (<span class="no-break"><i class="material-icons">phone</i> <a href="tel:+5531998745602">31 998-745-602</a></span>, <span class="no-break"><i class="material-icons">email</i> <a href="mailto:fegemo@gmail.com">fegemo@gmail.com</a></span>) para agendar uma visita ou para ter mais informações. Caso queira fechar negócio, você pode tratar diretamente com o proprietário
+                    ou então com a <span class="no-break"><i class="material-icons">language</i> <a href="http://frankguimaraes.dominio-de-exemplo.com.br/imoveis/detalhes/imovel_id/838853/casa-padrao-para-venda-em-vila-cristina-betim-mg#bg-detalhes">Frank Guimarães imobiliária</a></span>. Lá, inclusive, você consegue simular e realizar financiamento para a compra.
+                </p>
+                <div class="actions">
+                    <span class="no-break button"><i class="material-icons">phone</i> <a href="tel:+5531998745602">Ligar para Flávio</a></span></button>
+                    <span class="no-break button"><i class="material-icons">email</i> <a href="mailto:fegemo@gmail.com">Email para Flávio</a></span></button>
+                    <span class="no-break button"><i class="material-icons">language</i> <a href="http://frankguimaraes.dominio-de-exemplo.com.br/imoveis/detalhes/imovel_id/838853/casa-padrao-para-venda-em-vila-cristina-betim-mg#bg-detalhes">Imobiliária Frank Guimarães</a></span></button>
                 </div>
             </section>
             <h2>Perguntas e respostas</h2>
@@ -255,13 +270,13 @@
                 <div class="q-a">
                     <div class="question">Como é a ventilação da casa? É arejada?</div>
                     <div class="answer">
-                        <p>A casa está posicionada no alto do lote e recebe muita corrente de ar. Há 6 janelas além das portas da frente e do fundo que a tornam bastante arejada.</p>
+                        <p>A casa está posicionada no alto do lote e recebe muita corrente de ar. Há 6 janelas além das portas da frente e do fundo que a tornam bastante arejada. As portas possuem janelas embutidas também, facilitando a circulação.</p>
                     </div>
                 </div>
                 <div class="q-a">
                     <div class="question">Há algum perigo relativo a questões climáticas?</div>
                     <div class="answer">
-                        <p>Apesar de próxima do rio (~150m), a casa está bastante elevada e não há risco algum de inundação - nem mesmo na mesma altura do rio isso acontece.</p>
+                        <p>Apesar de próxima do rio (~150m), a casa está bastante elevada sem possibilidade de inundação.</p>
                         <p>Não há encostas que ofereçam risco de desmoronamento na casa ou em seus vizinhos.</p>
                     </div>
                 </div>
