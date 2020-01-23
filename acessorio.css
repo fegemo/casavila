@@ -1,0 +1,44 @@
+@keyframes floating {
+    from {
+        transform: translateY(0) scale(1);
+    }
+    to {
+        transform: translateY(-0.25em) scale(1.1);
+    }
+}
+
+.floating {
+    animation: floating 2s ease-in-out 0s alternate infinite;
+}
+
+.delay-0 {
+    animation-delay: 0s;
+}
+
+.delay-1 {
+    animation-delay: .5s;
+}
+
+.delay-2 {
+    animation-delay: 1s;
+}
+
+
+@keyframes glitch {
+    0% {
+        transform: rotate(0);
+    }
+    99.1% {
+        transform: rotate(0);
+    }
+    99.3% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(20deg);
+    }
+}
+
+.glitch {
+    animation: glitch 15s linear 0s infinite forwards;
+}
