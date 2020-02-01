@@ -54,8 +54,7 @@ function parseThumbnailElements(el, selector) {
 
 // triggers when user clicks on thumbnail
 function onThumbnailsClick(e) {
-    e.preventDefault();
-
+    
     
     // find root element of slide
     const clickedListItem = e.target.closest('FIGURE');
@@ -74,10 +73,11 @@ function onThumbnailsClick(e) {
             return;
         }
     }
+    e.preventDefault();
     
     // verifica se há um mouse. se não houver,
     // abre a galeria apenas se a foto estiver '.selecionada'
-    if (clickedListItem.closest('.gallery') && !window.matchMedia("(hover: hover)").matches) {
+    if (clickedListItem.closest('.gallery') && window.matchMedia("(hover: none)").matches) {
         // não há mouse...
         const selectedElements = clickedListItem.closest('.gallery').querySelectorAll('figure.selected');
         for (let el of selectedElements) {
